@@ -89,7 +89,7 @@ system_setup(){
     VALIDATE $? "copy the calalogue service"
     
     systemctl daemon-reload &>>$LOG_FILE
-    systemctl enable catalogue  &>>$LOG_FILE
-    systemctl start catalogue
-    VALIDATE $? "starting catalogue"
+    systemctl enable $app_name  &>>$LOG_FILE
+    systemctl start  $app_name
+    VALIDATE $? "starting $app_name"
 }
