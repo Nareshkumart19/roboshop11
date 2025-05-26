@@ -37,27 +37,25 @@ check_root(){
 
 
 app_setup(){
-    id roboshop
+    id roboshop &>>$LOG_FILE
     if [ $? -ne 0 ]
     then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop    
-        VALIDATE $? "creating roboshop system user"
-    else 
-        echo -e "system user roboshop alraedy cretaed .... $Y skipping $N"
-    fi    
-    
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+        VALIDATE $? "Creating roboshop system user"
+    else
+        echo -e "System user roboshop already created ... $Y SKIPPING $N"
+    fi
+
     mkdir -p /app 
-    VALIDATE $? "careating app  directory"
+    VALIDATE $? "Creating app directory"
 
-
-    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/-v3.zip  &>>$LOG_FILE
-    VALIDATE $? "Dowlinding $app_name"
+    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>$LOG_FILE
+    VALIDATE $? "Downloading $app_name"
 
     rm -rf /app/*
     cd /app 
-
     unzip /tmp/$app_name.zip &>>$LOG_FILE
-    VALIDATE $? "unzipping  $app_name"
+    VALIDATE $? "unzipping $app_name"
 }
 
 # validate functions takes input as exit status, what command they tried to install
