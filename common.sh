@@ -56,8 +56,8 @@ app_setup(){
     rm -rf /app/*
     cd /app 
 
-    unzip /tmp/catalogue.zip &>>$LOG_FILE
-    VALIDATE $? "unziping catalogue"
+    unzip /tmp/$app_name.zip &>>$LOG_FILE
+    VALIDATE $? "unzipping  $app_name"
 }
 
 # validate functions takes input as exit status, what command they tried to install
