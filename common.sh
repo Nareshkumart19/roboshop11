@@ -84,7 +84,7 @@ nodejs_setup(){
 
 }
 
-system_setup(){
+systemd_setup(){
     cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
     VALIDATE $? "copy the calalogue service"
     
