@@ -45,18 +45,19 @@ app_setup(){
     else 
         echo -e "system user roboshop alraedy cretaed .... $Y skipping $N"
     fi    
+    
     mkdir -p /app 
     VALIDATE $? "careating app  directory"
 
 
     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/-v3.zip  &>>$LOG_FILE
-    VALIDATE $? "Dowlinding $app_name "
+    VALIDATE $? "Dowlinding $app_name"
 
     rm -rf /app/*
     cd /app 
 
-    unzip /tmp/$app_name.zip &>>$LOG_FILE
-    VALIDATE $? "unziping $app_name"
+    unzip /tmp/catalogue.zip &>>$LOG_FILE
+    VALIDATE $? "unziping catalogue"
 }
 
 # validate functions takes input as exit status, what command they tried to install
